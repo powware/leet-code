@@ -61,7 +61,7 @@ void LongestPalindromicSubstringCommon(string s, string expected)
 
 TEST(LongestPalindromicSubstring, Case1)
 {
-    LongestPalindromicSubstringCommon("babad", "aba");
+    LongestPalindromicSubstringCommon("babad", "bab");
 }
 
 TEST(LongestPalindromicSubstring, Case2)
