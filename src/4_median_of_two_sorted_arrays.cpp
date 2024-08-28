@@ -10,12 +10,31 @@ class Solution
 public:
     double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2)
     {
-        vector<int> combined;
-        combined.reserve(nums1.size() + nums2.size());
-        combined.insert(combined.cend(), nums1.cbegin(), nums1.cend());
-        combined.insert(combined.cend(), nums2.cbegin(), nums2.cend());
-        std::sort(combined.begin(), combined.end());
+        vector<int> combined(nums1.size() + nums2.size());
 
+        std::size_t i = 0, j = 0, c = 0;
+        while (i < nums1.size() || j < nums2.size())
+        {
+            if (i == nums1.size())
+            {
+                combined[c++] = nums2[j++];
+            }
+            else if (j == nums2.size())
+            {
+                combined[c++] = nums1[i++];
+            }
+            else
+            {
+                if (nums1[i] < nums2[j])
+                {
+                    combined[c++] = nums1[i++];
+                }
+                else
+                {
+                    combined[c++] = nums2[j++];
+                }
+            }
+        }
         if (combined.size() % 2 == 1)
         {
             return combined[(combined.size() - 1) / 2];

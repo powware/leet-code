@@ -1,61 +1,48 @@
 #include <string>
-#include <unordered_map>
+#include <map>
 #include <optional>
 #include <iostream>
+#include <array>
+#include <limits>
 
 #include <gtest/gtest.h>
-
-using namespace std;
 
 class Solution
 {
 public:
-    int lengthOfLongestSubstring(string s)
+    int lengthOfLongestSubstring(std::string s)
     {
-        optional<char> repeat_offender{};
-        string longest;
-        for (auto it = s.begin(); it != s.end(); ++it)
+        int longest = 0;
+        for (std::size_t i = 0; i < s.size(); ++i)
         {
-
-            auto future = it;
-            ++future;
-            if (repeat_offender && future != s.end() && *repeat_offender == *future)
+            std::array<std::optional<std::size_t>, std::numeric_limits<std::string::value_type>::max()> current_chars;
+            std::size_t j;
+            for (j = i; j < s.size(); ++j)
             {
-                cout << "skipping " << *it << endl;
-                continue;
-            }
-
-            string current;
-            unordered_map<char, bool> current_chars;
-            auto prev = it;
-            for (auto sub_it = it; sub_it != s.end(); ++sub_it)
-            {
-                if (current_chars.find(*sub_it) == current_chars.end())
+                if (current_chars[s[j]])
                 {
-                    current.append(string(1, *sub_it));
-                    current_chars[*sub_it] = true;
-                    prev = sub_it;
-                }
-                else
-                {
-                    repeat_offender = *sub_it;
-                    it = prev;
-                    if (current.size() > longest.size())
+                    if (j - i > longest)
                     {
-                        longest = std::move(current);
+                        longest = j - i;
                     }
-
+                    i = *current_chars[s[j]];
                     break;
                 }
+
+                current_chars[s[j]] = j;
+            }
+
+            if (j == s.size() && j - i > longest)
+            {
+                longest = j - i;
             }
         }
 
-        cout << longest << endl;
-        return longest.size();
+        return longest;
     }
 };
 
-void LongestSubstringWithoutRepeatingCharactersCommon(string s, int expected)
+void LongestSubstringWithoutRepeatingCharactersCommon(std::string s, int expected)
 {
     Solution solution;
     EXPECT_EQ(solution.lengthOfLongestSubstring(s), expected);
@@ -74,4 +61,19 @@ TEST(LongestSubstringWithoutRepeatingCharacters, Case2)
 TEST(LongestSubstringWithoutRepeatingCharacters, Case3)
 {
     LongestSubstringWithoutRepeatingCharactersCommon("pwwkew", 3);
+}
+
+TEST(LongestSubstringWithoutRepeatingCharacters, Case4)
+{
+    LongestSubstringWithoutRepeatingCharactersCommon(" ", 1);
+}
+
+TEST(LongestSubstringWithoutRepeatingCharacters, Case5)
+{
+    LongestSubstringWithoutRepeatingCharactersCommon("ab", 2);
+}
+
+TEST(LongestSubstringWithoutRepeatingCharacters, Case6)
+{
+    LongestSubstringWithoutRepeatingCharactersCommon("dvdf", 3);
 }

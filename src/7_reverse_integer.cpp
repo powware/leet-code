@@ -1,5 +1,6 @@
 #include <vector>
 #include <string>
+#include <limits>
 
 #include <gtest/gtest.h>
 
@@ -10,10 +11,15 @@ class Solution
 public:
     int reverse(int x)
     {
-        int highest_power_of_ten;
+        if (!x)
+        {
+            return 0;
+        }
+
+        int highest_power_of_ten = 9;
         int temp = x;
         int div = 10;
-        for (int i = 1; i <= 10; i++)
+        for (int i = 1; i < 9; i++)
         {
             int mod = temp % div;
             if (mod)
@@ -62,4 +68,9 @@ TEST(ReverseInteger, Case2)
 TEST(ReverseInteger, Case3)
 {
     ReverseIntegerCommon(120, 21);
+}
+
+TEST(ReverseInteger, Case4)
+{
+    ReverseIntegerCommon(0, 0);
 }

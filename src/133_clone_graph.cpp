@@ -1,5 +1,5 @@
 #include <vector>
-#include <map>
+#include <array>
 
 #include <gtest/gtest.h>
 
@@ -30,12 +30,12 @@ class Solution
 public:
     Node *cloneGraph(Node *node)
     {
-        std::map<int, Node *> clones;
+        std::array<Node *, 101> clones({nullptr});
         return CloneNode(node, clones);
     }
 
 private:
-    Node *CloneNode(Node *node, std::map<int, Node *> &clones)
+    Node *CloneNode(Node *node, std::array<Node *, 101> &clones)
     {
         if (!node)
         {

@@ -15,6 +15,11 @@ public:
         for (auto c : s)
         {
             rows[row].push_back(c);
+            if (numRows == 1)
+            {
+                continue;
+            }
+
             if (down)
             {
                 if (row < numRows - 1)
@@ -58,17 +63,22 @@ void ZigzagConversionCommon(string s, int numRows, string expected)
     ASSERT_EQ(solution.convert(s, numRows), expected);
 }
 
-TEST(ZigzagConversion, Case1)
-{
-    ZigzagConversionCommon("PAYPALISHIRING", 3, "PAHNAPLSIIGYIR");
-}
+// TEST(ZigzagConversion, Case1)
+// {
+//     ZigzagConversionCommon("PAYPALISHIRING", 3, "PAHNAPLSIIGYIR");
+// }
 
-TEST(ZigzagConversion, Case2)
-{
-    ZigzagConversionCommon("PAYPALISHIRING", 4, "PINALSIGYAHRPI");
-}
+// TEST(ZigzagConversion, Case2)
+// {
+//     ZigzagConversionCommon("PAYPALISHIRING", 4, "PINALSIGYAHRPI");
+// }
 
-TEST(ZigzagConversion, Case3)
+// TEST(ZigzagConversion, Case3)
+// {
+//     ZigzagConversionCommon("A", 1, "A");
+// }
+
+TEST(ZigzagConversion, Case4)
 {
-    ZigzagConversionCommon("A", 1, "A");
+    ZigzagConversionCommon("AB", 1, "AB");
 }

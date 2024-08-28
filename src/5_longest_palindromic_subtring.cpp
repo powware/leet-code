@@ -30,6 +30,11 @@ public:
             }
         }
 
+        if (!longest.size())
+        {
+            return {s[0]};
+        }
+
         return longest;
     }
 
