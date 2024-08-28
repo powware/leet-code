@@ -10,7 +10,6 @@ public:
     {
         int value = prices[0];
         int max_profit = 0;
-        std::optional<int> day;
         for (std::size_t i = 1; i < prices.size(); ++i)
         {
             auto profit = prices[i] - value;
@@ -21,11 +20,10 @@ public:
             if (profit > max_profit)
             {
                 max_profit = profit;
-                day = i;
             }
         }
 
-        return day ? *day + 1 : 0;
+        return max_profit;
     }
 };
 
