@@ -27,5 +27,10 @@
         "titleBar.activeForeground": "#15202b",
         "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "#abf47e"
+    "peacock.color": "#abf47e",
+    "files.associations": {
+        "*.custom_xml": "xml",
+        "*.generic_xml": "xml",
+        "xstring": "cpp"
+    }
 }

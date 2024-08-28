@@ -1,4 +1,5 @@
 #include <string>
+#include <optional>
 
 #include <gtest/gtest.h>
 
@@ -9,29 +10,81 @@ class Solution
 public:
     string longestPalindrome(string s)
     {
-        for (auto it = s.begin(); it != s.end(); ++it)
+        string longest;
+        for (std::size_t i = 0; i < s.size() - 1; ++i)
         {
-            auto lhs = it - 1;
-            auto rhs = it + 1;
-            if (*it == *rhs)
+
+            auto even = Palindrome(s, i, i + 1);
+            if (even && even->size() > longest.size())
             {
+                longest = *even;
+            }
+
+            if (i > 0)
+            {
+                auto uneven = Palindrome(s, i - 1, i + 1);
+                if (uneven && uneven->size() > longest.size())
+                {
+                    longest = *uneven;
+                }
             }
         }
+
+        return longest;
+    }
+
+private:
+    std::optional<string> Palindrome(string s, std::size_t lhs, std::size_t rhs)
+    {
+        std::optional<std::tuple<std::size_t, std::size_t>> palindrome;
+        do
+        {
+            if (s[lhs] != s[rhs])
+            {
+                break;
+            }
+
+            palindrome = {lhs, rhs};
+
+        } while (lhs-- > 0 && rhs++ < s.size() - 1);
+
+        return palindrome ? std::make_optional(s.substr(std::get<0>(*palindrome), std::get<1>(*palindrome) - std::get<0>(*palindrome) + 1)) : std::nullopt;
     }
 };
 
-// void MedianOfTwoSortedArraysCommon(vector<int> nums1, vector<int> nums2, double expected)
-// {
-//     Solution solution;
-//     EXPECT_EQ(solution.findMedianSortedArrays(nums1, nums2), expected);
-// }
+void LongestPalindromicSubstringCommon(string s, string expected)
+{
+    Solution solution;
 
-// TEST(MedianOfTwoSortedArrays, Case1)
-// {
-//     MedianOfTwoSortedArraysCommon({1, 3}, {2}, 2);
-// }
+    EXPECT_EQ(solution.longestPalindrome(s), expected);
+}
 
-// TEST(MedianOfTwoSortedArrays, Case2)
-// {
-//     MedianOfTwoSortedArraysCommon({1, 2}, {3, 4}, 2.5);
-// }
+TEST(LongestPalindromicSubstring, Case1)
+{
+    LongestPalindromicSubstringCommon("babad", "aba");
+}
+
+TEST(LongestPalindromicSubstring, Case2)
+{
+    LongestPalindromicSubstringCommon("cbbd", "bb");
+}
+
+TEST(LongestPalindromicSubstring, Case3)
+{
+    LongestPalindromicSubstringCommon("abaxyzzyxf", "xyzzyx");
+}
+
+TEST(LongestPalindromicSubstring, Case4)
+{
+    LongestPalindromicSubstringCommon("forgeeksskeeg2or1283hnasdasdh9812h3ek12ne8asjdiasjdkl12j0e98j1290ejawsdjkasjmdkl2j18ehjasndklansd12893hj1klnwdaklnsd812j4iqwkdnmaskldj12890jewajskdjaslkdj21890jeasnkldjn172g73gqasjhd2j18ehjasndklansd12893hj1klnwdaklnsd812j4iqwkdnmaskldj12890jewajskdjaslkdj21890jeasnkldjn172g73gqasjhd2j18ehjasndklansd12893hj1klnwdaklnsd812j4iqwkdnmaskldj12890jewajskdjaslkdj21890jeasnkldjn172g73gqasjhd2j18ehjasndklansd12893hj1klnwdaklnsd812j4iqwkdnmaskldj12890jewajskdjaslkdj21890jeasnkldjn172g73gqasjhd2j18ehjasndklansd12893hj1klnwdaklnsd812j4iqwkdnmaskldj12890jewajskdjaslkdj21890jeasnkldjn172g73gqasjhd2j18ehjasndklansd12893hj1klnwdaklnsd812j4iqwkdnmaskldj12890jewajskdjaslkdj21890jeasnkldjn172g73gqasjhd2j18ehjasndklansd12893hj1klnwdaklnsd812j4iqwkdnmaskldj12890jewajskdjaslkdj21890jeasnkldjn172g73gqasjhd2j18ehjasndklansd12893hj1klnwdaklnsd812j4iqwkdnmaskldj12890jewajskdjaslkdj21890jeasnkldjn172g73gqasjhd2j18ehjasndklansd12893hj1klnwdaklnsd812j4iqwkdnmaskldj12890jewajskdjaslkdj21890jeasnkldjn172g73gqasjhd2j18ehjasndklansd12893hj1klnwdaklnsd812j4iqwkdnmaskldj12890jewajskdjaslkdj21890jeasnkldjn172g73gqasjhd2j18ehjasndklansd12893hj1klnwdaklnsd812j4iqwkdnmaskldj12890jewajskdjaslkdj21890jeasnkldjn172g73gqasjhd2j18ehjasndklansd12893hj1klnwdaklnsd812j4iqwkdnmaskldj12890jewajskdjaslkdj21890jeasnkldjn172g73gqasjhd2j18ehjasndklansd12893hj1klnwdaklnsd812j4iqwkdnmaskldj12890jewajskdjaslkdj21890jeasnkldjn172g73gqasjhd", "geeksskeeg");
+}
+
+TEST(LongestPalindromicSubstring, Case5)
+{
+    LongestPalindromicSubstringCommon("abacdefghij", "aba");
+}
+
+TEST(LongestPalindromicSubstring, Case6)
+{
+    LongestPalindromicSubstringCommon("aabbcbbaa", "aabbcbbaa");
+}
