@@ -31,6 +31,7 @@
     "files.associations": {
         "*.custom_xml": "xml",
         "*.generic_xml": "xml",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "vector": "cpp"
     }
 }
