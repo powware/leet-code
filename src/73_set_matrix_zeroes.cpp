@@ -44,9 +44,20 @@ public:
 
         for (size_t i = 1; i < rows; i++)
         {
-            for (size_t j = 1; j < columns; j++)
+            if (matrix[i][0] == 0)
             {
-                if (matrix[0][j] == 0 || matrix[i][0] == 0)
+                for (size_t j = 1; j < columns; j++)
+                {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+
+        for (size_t j = 1; j < columns; j++)
+        {
+            if (matrix[0][j] == 0)
+            {
+                for (size_t i = 1; i < rows; i++)
                 {
                     matrix[i][j] = 0;
                 }
