@@ -31,9 +31,9 @@ public:
             }
         }
 
-        for (size_t i = 0; i < matrix.size(); i++)
+        for (size_t i = 0; i < rows; i++)
         {
-            for (size_t j = 0; j < matrix[i].size(); j++)
+            for (size_t j = 0; j < columns; j++)
             {
                 if (matrix[i][j] == 0)
                 {
