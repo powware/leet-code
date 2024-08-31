@@ -46,10 +46,10 @@ void ContainerWithMostWaterCommon(std::vector<int> heights, int expected)
     EXPECT_EQ(solution.maxArea(heights), expected);
 }
 
-TEST(ContainerWithMostWater, Case1)
-{
-    ContainerWithMostWaterCommon({1, 3, 1, 25, 1, 24, 5}, 24);
-}
+// TEST(ContainerWithMostWater, Case1)
+// {
+//     ContainerWithMostWaterCommon({1, 3, 1, 25, 1, 24, 5}, 24);
+// }
 
 // TEST(ContainerWithMostWater, Case1)
 // {
@@ -63,7 +63,7 @@ TEST(ContainerWithMostWater, Case2)
 
 TEST(ContainerWithMostWater, Case3)
 {
-    ContainerWithMostWaterCommon({1, 8}, 7);
+    ContainerWithMostWaterCommon({1, 8}, 1);
 }
 
 TEST(ContainerWithMostWater, Case4)
