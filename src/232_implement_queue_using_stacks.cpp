@@ -21,9 +21,9 @@ public:
             EnqueueToDequeue();
         }
 
-        int temp = dequeue.top()
+        int temp = dequeue.top();
 
-                       dequeue.pop();
+        dequeue.pop();
 
         return temp;
     }
