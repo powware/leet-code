@@ -31,7 +31,7 @@ public:
             }
         }
 
-        return sub[(m - 1) * n + n - 1];
+        return sub[m * n - 1];
     }
 };
 
