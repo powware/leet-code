@@ -12,19 +12,12 @@ public:
         std::size_t si = 0;
         std::size_t pi = 0;
 
-        if (s.size() == 0)
+        std::optional<std::tuple<std::size_t, std::size_t>> try_match_all_from;
+
+        if (!s.size() && !p.size())
         {
-            for (auto c : p)
-            {
-                if (c != '*')
-                {
-                    return false;
-                }
-            }
             return true;
         }
-
-        std::optional<std::tuple<std::size_t, std::size_t>> try_match_all_from;
 
         while (true)
         {
@@ -56,11 +49,6 @@ public:
             {
                 si = ++std::get<0>(*try_match_all_from);
                 pi = std::get<1>(*try_match_all_from);
-
-                // if (si == s.size())
-                // {
-                //     return false;
-                // }
             }
             else
             {
@@ -77,11 +65,6 @@ public:
                 {
                     si = ++std::get<0>(*try_match_all_from);
                     pi = std::get<1>(*try_match_all_from);
-
-                    // if (si == s.size())
-                    // {
-                    //     return false;
-                    // }
                 }
                 else
                 {
@@ -162,4 +145,9 @@ TEST(WildcardMatching, Case13)
 TEST(WildcardMatching, Case14)
 {
     WildcardMatchingCommon("b", "?*?", false);
+}
+
+TEST(WildcardMatching, Case15)
+{
+    WildcardMatchingCommon("", "****", true);
 }
