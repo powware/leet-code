@@ -44,5 +44,5 @@ void RangeSumQueryImmutableCommon(std::vector<int> nums, std::vector<std::vector
 
 TEST(RangeSumQueryImmutable, Case1)
 {
-    RangeSumQueryImmutableCommon({{-2, 0, 3, -5, 2, -1}}, {{0, 2}, {2, 5}, {0, 5}}, {1, -1, 3});
+    RangeSumQueryImmutableCommon({{-2, 0, 3, -5, 2, -1}}, {{0, 2}, {2, 5}, {0, 5}}, {1, -1, -3});
 }
