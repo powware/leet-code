@@ -57,7 +57,7 @@ public:
     }
 };
 
-void TwoSumCommon(std::vector<int> nums)
+void ThreeSumCommon(std::vector<int> nums)
 {
     Solution solution;
     auto result = solution.threeSum(nums);
@@ -65,5 +65,5 @@ void TwoSumCommon(std::vector<int> nums)
 
 TEST(ThreeSum, Case1)
 {
-    TwoSumCommon({0, 0, 0, 0});
+    ThreeSumCommon({0, 0, 0, 0});
 }
