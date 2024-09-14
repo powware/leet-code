@@ -9,10 +9,10 @@ class Solution
 public:
     int findMaxLength(std::vector<int> &nums)
     {
-        int sum = 0;
-        int max = 0;
+        std::size_t sum = 0;
+        std::size_t max = 0;
         appearances_[0] = -1;
-        for (int i = 0; i < nums.size(); ++i)
+        for (std::size_t i = 0; i < nums.size(); ++i)
         {
             if (nums[i] == 0)
             {
@@ -29,7 +29,7 @@ public:
             }
             else
             {
-                int distance = i - appearances_[sum];
+                std::size_t distance = i - appearances_[sum];
                 if (distance > max)
                 {
                     max = distance;

@@ -32,7 +32,7 @@ public:
 void PeakIndexInMountainArrayCommon(std::vector<int> nums)
 {
     Solution solution;
-    auto result = solution.peakIndexInMountainArray(nums);
+    solution.peakIndexInMountainArray(nums);
 }
 
 TEST(PeakIndexInMountainArray, Case1)

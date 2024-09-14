@@ -9,7 +9,7 @@ class Solution
 public:
     string convert(string s, int numRows)
     {
-        std::size_t row = 0;
+        int row = 0;
         bool down = true;
         std::vector<std::string> rows(numRows);
         for (auto c : s)

@@ -61,6 +61,6 @@ TEST(ImplementQueueUsingStacks, Case1)
 {
     MyQueue obj;
     obj.push(1);
-    int param_2 = obj.pop();
-    bool param_4 = obj.empty();
+    // int param_2 = obj.pop();
+    // bool param_4 = obj.empty();
 }

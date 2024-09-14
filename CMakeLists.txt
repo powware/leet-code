@@ -22,6 +22,13 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(leet_code ${SRCS})
 
+if(MSVC)
+  target_compile_options(leet_code ${TARGET_NAME} PRIVATE /W4 /WX)
+else()
+  target_compile_options(leet_code ${TARGET_NAME} PRIVATE -Wall -Wextra
+                                                          -Wpedantic -Werror)
+endif()
+
 target_link_libraries(leet_code GTest::gtest_main)
 
 include(GoogleTest)

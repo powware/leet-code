@@ -15,9 +15,9 @@ public:
 
         sub[0] = 1;
 
-        for (std::size_t i = 0; i < m; i++)
+        for (int i = 0; i < m; i++)
         {
-            for (std::size_t j = 0; j < n; j++)
+            for (int j = 0; j < n; j++)
             {
                 if (j + 1 < n)
                 {

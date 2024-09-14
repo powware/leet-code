@@ -10,13 +10,13 @@ class Solution
 public:
     vector<int> twoSum(vector<int> &nums, int target)
     {
-        unordered_map<int, int> visited;
+        unordered_map<int, std::size_t> visited;
 
-        for (int i = 0; i < nums.size(); ++i)
+        for (std::size_t i = 0; i < nums.size(); ++i)
         {
             if (visited.find(target - nums[i]) != visited.end())
             {
-                return {i, visited[target - nums[i]]};
+                return {int(i), int(visited[target - nums[i]])};
             }
 
             visited[nums[i]] = i;

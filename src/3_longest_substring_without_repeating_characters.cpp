@@ -11,7 +11,7 @@ class Solution
 public:
     int lengthOfLongestSubstring(std::string s)
     {
-        int longest = 0;
+        std::size_t longest = 0;
         for (std::size_t i = 0; i < s.size(); ++i)
         {
             std::array<std::optional<std::size_t>, std::numeric_limits<std::string::value_type>::max()> current_chars;
@@ -37,7 +37,7 @@ public:
             }
         }
 
-        return longest;
+        return int(longest);
     }
 };
 
