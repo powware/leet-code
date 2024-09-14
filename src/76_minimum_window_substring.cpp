@@ -47,53 +47,69 @@ public:
 
         for (std::size_t i = 0; i < s.size(); ++i)
         {
-            if (t_mapped[offset(s[i])])
+            if (not t_mapped[offset(s[i])])
             {
-                if (!first)
-                {
-                    first = i;
-                }
-
-                ++inside[s[i]];
-                auto it = missing.find(s[i]);
-                if (it != missing.end())
-                {
-                    --it->second;
-                    if (it->second == 0)
-                    {
-                        missing.erase(it);
-                    }
-                }
-
-                occurences.emplace_back(s[i], i);
+                continue;
             }
 
-            if (missing.size() == 0)
+            if (!first)
             {
-                last = i;
-                auto size = last - *first + 1;
-                if (not min or size < min->size)
+                first = i;
+            }
+
+            auto it = missing.find(s[i]);
+            if (it != missing.end())
+            {
+                --it->second;
+                if (it->second == 0)
                 {
-                    min = {size, *first, last};
+                    missing.erase(it);
+                    ++inside[s[i]];
+                }
+            }
+            else
+            {
+                ++inside[s[i]];
+            }
+
+            occurences.emplace_back(s[i], i);
+
+            if (missing.size())
+            {
+                continue;
+            }
+
+            last = i;
+            auto size = last - *first + 1;
+            if (not min or size < min->size)
+            {
+                min = {size, *first, last};
+            }
+
+            while (missing.size() == 0)
+            {
+                auto occ = occurences.front();
+                occurences.pop_front();
+
+                if (occurences.size())
+                {
+                    first = occurences.front().i;
+                }
+                else
+                {
+                    first = std::nullopt;
                 }
 
-                while (missing.size() == 0)
+                if (not --inside[occ.c])
                 {
-                    auto occ = occurences.front();
-                    occurences.pop_front();
-
-                    if (not --inside[occ.c])
+                    ++missing[occ.c];
+                }
+                else if (first)
+                {
+                    auto size = last - *first + 1;
+                    if (size < min->size)
                     {
-                        ++missing[occ.c];
-                    }
-
-                    if (occurences.size())
-                    {
-                        first = occurences.front().i;
-                    }
-                    else
-                    {
-                        first = std::nullopt;
+                        min = {size, *first, last};
                     }
                 }
             }
