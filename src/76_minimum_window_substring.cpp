@@ -25,17 +25,16 @@ public:
         struct Interval
         {
             std::size_t size;
-            std::size_t first;
-            std::size_t last;
+            std::size_t pos;
         };
 
         std::deque<Occurence> occurences;
         std::optional<Interval> min;
 
-        std::unordered_map<char, std::size_t> missing;
-        std::unordered_map<char, std::size_t> inside;
+        std::unordered_map<char, int> missing;
 
         std::array<bool, offset('z') + 1> t_mapped({});
+        std::size_t total_missing = t.size();
         for (auto c : t)
         {
             t_mapped[offset(c)] = true;
@@ -57,24 +56,14 @@ public:
                 first = i;
             }
 
-            auto it = missing.find(s[i]);
-            if (it != missing.end())
+            if (missing[s[i]]-- > 0)
             {
-                --it->second;
-                if (it->second == 0)
-                {
-                    missing.erase(it);
-                    ++inside[s[i]];
-                }
-            }
-            else
-            {
-                ++inside[s[i]];
+                --total_missing;
             }
 
             occurences.emplace_back(s[i], i);
 
-            if (missing.size())
+            if (total_missing)
             {
                 continue;
             }
@@ -83,10 +72,10 @@ public:
             auto size = last - *first + 1;
             if (not min or size < min->size)
             {
-                min = {size, *first, last};
+                min = {size, *first};
             }
 
-            while (missing.size() == 0)
+            while (total_missing == 0)
             {
                 auto occ = occurences.front();
                 occurences.pop_front();
@@ -100,22 +89,22 @@ public:
                     first = std::nullopt;
                 }
 
-                if (not --inside[occ.c])
+                if (++missing[occ.c] > 0)
                 {
-                    ++missing[occ.c];
+                    ++total_missing;
                 }
                 else if (first)
                 {
                     auto size = last - *first + 1;
                     if (size < min->size)
                     {
-                        min = {size, *first, last};
+                        min = {size, *first};
                     }
                 }
             }
         }
 
-        return min ? s.substr(min->first, min->size) : "";
+        return min ? s.substr(min->pos, min->size) : "";
     }
 };
 
@@ -123,6 +112,11 @@ void MinimumWindowSubstringCommon(std::string s, std::string t, std::string expe
 {
     Solution solution;
     ASSERT_EQ(solution.minWindow(s, t), expected);
+}
+
+TEST(MinimumWindowSubstring, Case0)
+{
+    MinimumWindowSubstringCommon("aaaaaaaaaaaabbbbbcdd", "abcdd", "abbbbbcdd");
 }
 
 TEST(MinimumWindowSubstring, Case1)
