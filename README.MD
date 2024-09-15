@@ -5,6 +5,7 @@ https://www.designgurus.io/course/grokking-the-coding-interview
 https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions
 
 ## Used Patterns:
+- stack
 - monotonic stack
 - two pointer
 - floyd's cycle detection
@@ -13,10 +14,10 @@ https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questio
     - tabulation
     - momoization
 - linked list in place reversal
-- quickselect
-- heaps (only used)
+- quickselect (implemented)
+- heap
 - sliding window
-- binary search
+- binary search (implemented)
 
 ## todo
 - prefix tree / trie
