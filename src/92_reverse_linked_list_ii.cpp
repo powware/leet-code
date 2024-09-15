@@ -24,7 +24,7 @@ public:
         ListNode *previous = head;
         ListNode *current = head->next;
         ListNode *before = nullptr;
-        ListNode *first = nullptr;
+        ListNode *first = head;
 
         while (current and pos < right)
         {
