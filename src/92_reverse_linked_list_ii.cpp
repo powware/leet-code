@@ -59,7 +59,7 @@ public:
     }
 };
 
-ListNode *MakeList(int n)
+static ListNode *MakeList(int n)
 {
     ListNode *first = nullptr;
     ListNode **next = &first;
