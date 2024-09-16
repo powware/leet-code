@@ -12,13 +12,12 @@ public:
     {
 
         std::unordered_map<int, std::size_t> frequencies;
-        std::map<std::size_t, std::vector<int>, std ::greater<std::size_t>> buckets;
-
         for (auto num : nums)
         {
             ++frequencies[num];
         }
 
+        std::map<std::size_t, std::vector<int>, std ::greater<std::size_t>> buckets;
         for (auto frequency : frequencies)
         {
             buckets[frequency.second].push_back(frequency.first);
