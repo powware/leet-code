@@ -10,15 +10,9 @@ class Solution
 public:
     std::vector<int> topKFrequent(std::vector<int> &nums, int k)
     {
-        struct Frequency
-        {
-            int num;
-            std::size_t frequency;
-        };
-        std::priority_queue<Frequency, std::vector<Frequency>, decltype([](auto &lhs, auto &rhs)
-                                                                        { return lhs.frequency < rhs.frequency; })>
-            max;
+
         std::unordered_map<int, std::size_t> frequencies;
+        std::map<std::size_t, std::vector<int>, std ::greater<std::size_t>> buckets;
 
         for (auto num : nums)
         {
@@ -27,18 +21,24 @@ public:
 
         for (auto frequency : frequencies)
         {
-            max.push(Frequency(frequency.first, frequency.second));
+            buckets[frequency.second].push_back(frequency.first);
         }
 
         std::vector<int> result;
         result.reserve(k);
-        for (int i = 0; i < k; ++i)
+        for (auto &bucket : buckets)
         {
-            result.push_back(max.top().num);
-            max.pop();
+            for (auto num : bucket.second)
+            {
+                result.push_back(num);
+                if (result.size() == std::size_t(k))
+                {
+                    return result;
+                }
+            }
         }
 
-        return result;
+        return {};
     }
 };
 
