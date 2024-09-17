@@ -12,15 +12,17 @@ https://blog.algomaster.io/p/15-leetcode-patterns
 - two pointer
 - floyd's cycle detection
 - dutch national flag algorithm
-- dp
+- DP
     - tabulation
-    - momoization
+    - memoization
 - linked list in place reversal
 - quickselect (implemented)
 - heap
 - sliding window
 - binary search (implemented)
 - bucket sort
+- BST
+- DFS
 
 ## todo
 - prefix tree / trie
