@@ -4,12 +4,10 @@
 
 #include <gtest/gtest.h>
 
-using namespace std;
-
 class Solution
 {
 public:
-    int myAtoi(string s)
+    int myAtoi(std::string s)
     {
         std::optional<bool> negative;
         std::vector<int> digits;
@@ -56,7 +54,7 @@ public:
             }
         }
 
-        int64_t result = 0;
+        std::int64_t result = 0;
         if (!negative)
         {
             return 0;

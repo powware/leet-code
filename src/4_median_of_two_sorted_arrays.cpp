@@ -3,14 +3,12 @@
 
 #include <gtest/gtest.h>
 
-using namespace std;
-
 class Solution
 {
 public:
-    double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2)
+    double findMedianSortedArrays(std::vector<int> &nums1, std::vector<int> &nums2)
     {
-        vector<int> combined(nums1.size() + nums2.size());
+        std::vector<int> combined(nums1.size() + nums2.size());
 
         std::size_t i = 0, j = 0, c = 0;
         while (i < nums1.size() || j < nums2.size())
@@ -47,7 +45,7 @@ public:
     }
 };
 
-void MedianOfTwoSortedArraysCommon(vector<int> nums1, vector<int> nums2, double expected)
+void MedianOfTwoSortedArraysCommon(std::vector<int> nums1, std::vector<int> nums2, double expected)
 {
     Solution solution;
     EXPECT_EQ(solution.findMedianSortedArrays(nums1, nums2), expected);

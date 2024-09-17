@@ -3,14 +3,12 @@
 
 #include <gtest/gtest.h>
 
-using namespace std;
-
 class Solution
 {
 public:
-    string longestPalindrome(string s)
+    std::string longestPalindrome(std::string s)
     {
-        string longest;
+        std::string longest;
         for (std::size_t i = 0; i < s.size() - 1; ++i)
         {
 
@@ -39,7 +37,7 @@ public:
     }
 
 private:
-    std::optional<string> Palindrome(string s, std::size_t lhs, std::size_t rhs)
+    std::optional<std::string> Palindrome(std::string s, std::size_t lhs, std::size_t rhs)
     {
         std::optional<std::tuple<std::size_t, std::size_t>> palindrome;
         do
@@ -57,7 +55,7 @@ private:
     }
 };
 
-void LongestPalindromicSubstringCommon(string s, string expected)
+void LongestPalindromicSubstringCommon(std::string s, std::string expected)
 {
     Solution solution;
 

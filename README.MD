@@ -3,6 +3,8 @@
 https://seanprashad.com/leetcode-patterns/
 https://www.designgurus.io/course/grokking-the-coding-interview
 https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions
+https://leetcode.com/discuss/study-guide/4039411/14-Patterns-to-Ace-Any-Coding-Interview-Question
+https://blog.algomaster.io/p/15-leetcode-patterns
 
 ## Used Patterns:
 - stack
@@ -18,6 +20,7 @@ https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questio
 - heap
 - sliding window
 - binary search (implemented)
+- bucket sort
 
 ## todo
 - prefix tree / trie

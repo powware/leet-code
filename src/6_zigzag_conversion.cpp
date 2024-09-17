@@ -1,13 +1,12 @@
 #include <vector>
+#include <string>
 
 #include <gtest/gtest.h>
-
-using namespace std;
 
 class Solution
 {
 public:
-    string convert(string s, int numRows)
+    std::string convert(std::string s, int numRows)
     {
         int row = 0;
         bool down = true;
@@ -56,7 +55,7 @@ public:
     }
 };
 
-void ZigzagConversionCommon(string s, int numRows, string expected)
+void ZigzagConversionCommon(std::string s, int numRows, std::string expected)
 {
     Solution solution;
 

@@ -3,14 +3,12 @@
 
 #include <gtest/gtest.h>
 
-using namespace std;
-
 class Solution
 {
 public:
-    vector<int> twoSum(vector<int> &nums, int target)
+    std::vector<int> twoSum(std::vector<int> &nums, int target)
     {
-        unordered_map<int, std::size_t> visited;
+        std::unordered_map<int, std::size_t> visited;
 
         for (std::size_t i = 0; i < nums.size(); ++i)
         {
@@ -26,7 +24,7 @@ public:
     }
 };
 
-void TwoSumCommon(vector<int> nums, int target, vector<int> expected)
+void TwoSumCommon(std::vector<int> nums, int target, std::vector<int> expected)
 {
     Solution solution;
     auto result = solution.twoSum(nums, target);
