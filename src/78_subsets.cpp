@@ -25,14 +25,14 @@ private:
 
         Recurse(result, nums, subset, start + 1, n);
         subset.push_back(nums[start]);
-        Recurse(result, nums, subset, start + 1, n);
+        Recurse(result, nums, std::move(subset), start + 1, n);
     }
 };
 
 void SubsetsCommon(std::vector<int> nums)
 {
     Solution solution;
-    auto result = solution.Subsets(nums);
+    auto result = solution.subsets(nums);
 }
 
 TEST(Subsets, Case1)
