@@ -23,7 +23,9 @@ https://blog.algomaster.io/p/15-leetcode-patterns
 - bucket sort
 - BST
 - DFS
+- BFS
 - topological sort
+- backtracking
 
 ## todo
 - prefix tree / trie
