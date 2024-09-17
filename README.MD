@@ -23,12 +23,12 @@ https://blog.algomaster.io/p/15-leetcode-patterns
 - bucket sort
 - BST
 - DFS
+- topological sort
 
 ## todo
 - prefix tree / trie
 - knapsacks
 - graph algorithms
-    - topo sort
     - dijkstra
     - prims
     - kruksal
