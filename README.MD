@@ -14,7 +14,10 @@ https://blog.algomaster.io/p/15-leetcode-patterns
 - dutch national flag algorithm
 - DP
     - tabulation
+       - fibonacci
+       - kadane
     - memoization
+
 - linked list in place reversal
 - quickselect (implemented)
 - heap
@@ -38,3 +41,4 @@ https://blog.algomaster.io/p/15-leetcode-patterns
 - union find
 - radix sort
 - bit manip
+- go back and fix topological sort 210
